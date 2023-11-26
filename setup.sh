@@ -22,4 +22,4 @@ chmod +x /usr/bin/run.sh
 (crontab -l ; echo "0 0 * * * reboot") | crontab -
 (crontab -l ; echo "10 0 * * * run.sh") | crontab -
 run.sh
-echo "Script completed successfully!"
+sudo -i
