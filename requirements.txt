@@ -1,0 +1,4 @@
+pyarmor==8.4.4
+Flask
+Flask-SSLify
+requests
