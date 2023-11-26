@@ -1,5 +1,4 @@
 ---
-
 # IPTV Service API Documentation
 
 Welcome to the IPTV Service API documentation. This API allows users to manage their IPTV accounts, reseller accounts, and provides various utility functions.
@@ -35,54 +34,132 @@ Authentication is required for certain endpoints. The primary means of authentic
 
 ### 1. `GET /api/get_user_data`
 
-#### Description
+**Description**
 
 Get user data based on the provided `user_uuid` and `password_input`. This endpoint requires authentication using the `admin_password`.
 
-#### Parameters
+**Parameters**
 
 - `user_uuid` (string, required): User UUID.
 - `password_input` (string, required): Admin password for authentication.
 
-#### Response
+**Response**
 
 Returns user data or an error message.
 
 ### 2. `POST /shorten`
 
-#### Description
+**Description**
 
 Shorten a given URL.
 
-#### Request Body
+**Request Body**
 
 - `url` (string, required): The URL to be shortened.
 
-#### Response
+**Response**
 
 Returns the shortened URL.
 
 ### 3. `GET /{short_id}`
 
-#### Description
+**Description**
 
 Redirects to the original URL corresponding to the given short ID.
 
-### 4. `POST /api/register_reseller`
+...
 
-#### Description
+### 5. `POST /api/add_user`
 
-Register a new reseller.
+**Description**
 
-#### Request Body
+Register a new IPTV user.
 
-- `username` (string, required): Reseller username.
-- `balance` (float, required): Reseller balance.
-- `password` (string, required): Admin password for authentication.
+**Request Body**
 
-#### Response
+- `username` (string, required): User's desired username.
+- `reseller_username` (string, required): Reseller's username for authentication.
+- `reseller_password` (string, required): Reseller's password for authentication.
+- `package` (string, required): Package name for the user.
 
-Returns reseller credentials or an error message.
+**Response**
+
+Returns user information, including the generated link and remaining balance.
+
+### 6. `GET /iptv`
+
+**Description**
+
+Handles IPTV requests and ensures valid user authentication.
+
+**Parameters**
+
+- `id` (string, required): User's IPTV ID.
+- `uuid` (string, required): User's UUID.
+
+**Response**
+
+Redirects to the appropriate content or returns an error message.
+
+### 7. `POST /api/delete_user`
+
+**Description**
+
+Deletes a user based on the provided `username`, `uuid`, and `admin_password`.
+
+**Request Body**
+
+- `username` (string, required): User's username.
+- `uuid` (string, required): User's UUID.
+- `admin_password` (string, required): Admin password for authentication.
+
+**Response**
+
+Returns a success message or an error if the user is not found.
+
+### 8. `GET /api/get_users_by_reseller`
+
+**Description**
+
+Get a list of users associated with a specific reseller.
+
+**Parameters**
+
+- `reseller_username` (string, required): Reseller's username.
+- `password_input` (string, required): Admin password for authentication.
+
+**Response**
+
+Returns a list of users associated with the reseller.
+
+### 9. `GET /api/check_multilogin`
+
+**Description**
+
+Check if a user has multiple logins based on the provided `user_uuid` and `password_input`.
+
+**Parameters**
+
+- `user_uuid` (string, required): User's UUID.
+- `password_input` (string, required): Admin password for authentication.
+
+**Response**
+
+Returns the multilogin status for the specified user.
+
+### 10. `GET /api/check_all_multilogin`
+
+**Description**
+
+Check the multilogin status for all users.
+
+**Parameters**
+
+- `password_input` (string, required): Admin password for authentication.
+
+**Response**
+
+Returns the multilogin status for all users.
 
 ...
 
@@ -101,26 +178,29 @@ Example:
 
 ## 5. Examples
 
-Below are some example use cases for the API:
+Below are additional examples for the newly documented endpoints:
 
-1. **Get User Data**
+1. **Add User**
    ```bash
-   curl -X GET "https://your-api-host/api/get_user_data?user_uuid=example_uuid&password_input=admin_password"
+   curl -X POST -H "Content-Type: application/json" -d '{"username": "new_user", "reseller_username": "reseller_name", "reseller_password": "reseller_pass", "package": "basic"}' "https://your-api-host/api/add_user"
    ```
 
-2. **Shorten URL**
+2. **Delete User**
    ```bash
-   curl -X POST -H "Content-Type: application/json" -d '{"url": "https://example.com"}' "https://your-api-host/shorten"
+   curl -X POST -H "Content-Type: application/json" -d '{"username": "user_to_delete", "uuid": "user_uuid", "admin_password": "admin_pass"}' "https://your-api-host/api/delete_user"
    ```
 
 ...
 
 ## 6. FAQs
 
+
+
 ### Q: How can I reset my password?
-A: Passwords can be change in data.txt.
+A: Passwords can be changed in data.txt.
 
 ### Q: Can I register multiple users with a single request?
 A: No, the API currently supports registering one user at a time.
 
+...
 ---
