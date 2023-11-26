@@ -17,7 +17,7 @@ function register_reseller() {
             "username": "'"$reseller_username"'"
         }')
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 function add_user() {
@@ -37,7 +37,7 @@ function add_user() {
             "admin_password": "'"$admin_password"'"
         }')
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 function renew_user() {
@@ -51,7 +51,7 @@ function renew_user() {
             "admin_password": "'"$admin_password"'"
         }')
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 function add_reseller_balance() {
@@ -67,7 +67,7 @@ function add_reseller_balance() {
             "password": "'"$admin_password"'"
         }')
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 
@@ -84,7 +84,7 @@ function delete_user() {
             "admin_password": "'"$admin_password"'"
         }')
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 function get_user_data() {
@@ -92,7 +92,7 @@ function get_user_data() {
 
     response=$(curl -s "$API_BASE_URL/api/get_user_data?user_uuid=$user_uuid&password_input=$admin_password")
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 function get_users_by_reseller() {
@@ -100,7 +100,7 @@ function get_users_by_reseller() {
 
     response=$(curl -s "$API_BASE_URL/api/get_users_by_reseller?reseller_username=$reseller_username&password_input=$admin_password")
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 function check_multilogin() {
@@ -108,7 +108,7 @@ function check_multilogin() {
 
     response=$(curl -s "$API_BASE_URL/api/check_multilogin?user_uuid=$user_uuid&password_input=$admin_password")
 
-    echo "$response"
+    echo "$response" | jq -C .
 }
 
 function restart_api() {
