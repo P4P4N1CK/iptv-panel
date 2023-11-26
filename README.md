@@ -176,15 +176,16 @@ Renew a user's subscription.
 
 **Request Body**
 
-- `username` (string, required): User's username.
+- `reseller_username` (string, required): Reseller username for authentication.
+- `reseller_password` (string, required): Reseller password for authentication.
 - `uuid` (string, required): User's UUID.
-- `admin_password` (string, required): Admin password for authentication.
+- `package` (string, required): Package name for the user.
 
 **Response**
 
 Returns a success message or an error if the user is not found.
 
-### 12. `POST /api/add_balance`
+### 12. `POST /api/add_reseller_balance`
 
 **Description**
 
@@ -193,9 +194,8 @@ Add balance to a user's account.
 **Request Body**
 
 - `username` (string, required): User's username.
-- `uuid` (string, required): User's UUID.
 - `amount` (number, required): Amount to add to the user's balance.
-- `admin_password` (string, required): Admin password for authentication.
+- `password` (string, required): Admin password for authentication.
 
 **Response**
 
@@ -209,8 +209,8 @@ Example:
 
 ```json
 {
-    "error": "Invalid admin password",
-    "code": 401
+    "error": "Reseller not found",
+    "code": 404
 }
 ```
 
