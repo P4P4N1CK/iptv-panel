@@ -67,7 +67,6 @@ Returns the shortened URL.
 
 Redirects to the original URL corresponding to the given short ID.
 
-...
 
 ### 5. `POST /api/add_user`
 
@@ -161,7 +160,6 @@ Check the multilogin status for all users.
 
 Returns the multilogin status for all users.
 
-...
 
 ## 4. Error Handling
 
@@ -190,11 +188,7 @@ Below are additional examples for the newly documented endpoints:
    curl -X POST -H "Content-Type: application/json" -d '{"username": "user_to_delete", "uuid": "user_uuid", "admin_password": "admin_pass"}' "https://your-api-host/api/delete_user"
    ```
 
-...
-
 ## 6. FAQs
-
-
 
 ### Q: How can I reset my password?
 A: Passwords can be changed in data.txt.
