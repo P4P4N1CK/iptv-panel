@@ -6,7 +6,7 @@ Welcome to the IPTV Service API documentation. This API allows users to manage t
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
+1. [Introduction](## 1. Introduction)
 2. [Authentication](#authentication)
 3. [Endpoints](#endpoints)
     - [1. `GET /api/get_user_data`](#1-get-api-get_user_data)
