@@ -1,126 +1,88 @@
 ---
 
-# IPTV Service API Documentation
+# IPTV Service
 
-Welcome to the IPTV Service API documentation. This API allows users to manage their IPTV accounts, reseller accounts, and provides various utility functions.
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+## Overview
+
+The IPTV Service is a Flask-based application that provides a simple and efficient way to manage IPTV user accounts and resellers. This README provides an overview of the project, its features, and instructions on how to use the application.
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Authentication](#authentication)
-3. [Endpoints](#endpoints)
-    - [1. `GET /api/get_user_data`](#1-get-api-get_user_data)
-    - [2. `POST /shorten`](#2-post-shorten)
-    - [3. `GET /{short_id}`](#3-get-short_id)
-    - [4. `POST /api/register_reseller`](#4-post-api-register_reseller)
-    - [5. `POST /api/add_user`](#5-post-api-add_user)
-    - [6. `GET /iptv`](#6-get-iptv)
-    - [7. `POST /api/delete_user`](#7-post-api-delete_user)
-    - [8. `GET /api/get_users_by_reseller`](#8-get-api-get_users_by_reseller)
-    - [9. `GET /api/check_multilogin`](#9-get-api-check_multilogin)
-    - [10. `GET /api/check_all_multilogin`](#10-get-api-check_all_multilogin)
-4. [Error Handling](#error-handling)
-5. [Examples](#examples)
-6. [FAQs](#faqs)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-## 1. Introduction
+## Features
 
-The IPTV Service API provides a range of functionalities for managing user accounts, resellers, and utility operations. To use this API, you will need to authenticate using the appropriate credentials.
+- User and reseller registration.
+- URL shortening capabilities.
+- Multilogin checking for users.
+- ...
 
-## 2. Authentication
+## Getting Started
 
-Authentication is required for certain endpoints. The primary means of authentication is using the `admin_password` parameter in the request. Ensure that you include this parameter in the request header for the relevant endpoints.
+### Prerequisites
 
-## 3. Endpoints
+Before running the IPTV Service, make sure you have the following installed:
 
-### 1. `GET /api/get_user_data`
+- Python 3.x
+- pip (Python package installer)
 
-#### Description
+### Installation
 
-Get user data based on the provided `user_uuid` and `password_input`. This endpoint requires authentication using the `admin_password`.
+1. Clone the repository:
 
-#### Parameters
-
-- `user_uuid` (string, required): User UUID.
-- `password_input` (string, required): Admin password for authentication.
-
-#### Response
-
-Returns user data or an error message.
-
-### 2. `POST /shorten`
-
-#### Description
-
-Shorten a given URL.
-
-#### Request Body
-
-- `url` (string, required): The URL to be shortened.
-
-#### Response
-
-Returns the shortened URL.
-
-### 3. `GET /{short_id}`
-
-#### Description
-
-Redirects to the original URL corresponding to the given short ID.
-
-### 4. `POST /api/register_reseller`
-
-#### Description
-
-Register a new reseller.
-
-#### Request Body
-
-- `username` (string, required): Reseller username.
-- `balance` (float, required): Reseller balance.
-- `password` (string, required): Admin password for authentication.
-
-#### Response
-
-Returns reseller credentials or an error message.
-
-...
-
-## 4. Error Handling
-
-Errors are communicated through standard HTTP status codes and JSON responses. Check the error message in the response body for details on the issue.
-
-Example:
-
-```json
-{
-    "error": "Invalid admin password",
-    "code": 401
-}
-```
-
-## 5. Examples
-
-Below are some example use cases for the API:
-
-1. **Get User Data**
    ```bash
-   curl -X GET "https://your-api-host/api/get_user_data?user_uuid=example_uuid&password_input=admin_password"
+   git clone https://github.com/your-username/iptv-service.git
    ```
 
-2. **Shorten URL**
+2. Navigate to the project directory:
+
    ```bash
-   curl -X POST -H "Content-Type: application/json" -d '{"url": "https://example.com"}' "https://your-api-host/shorten"
+   cd iptv-service
    ```
 
-...
+3. Install the required dependencies:
 
-## 6. FAQs
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Q: How can I reset my password?
-A: Passwords cannot be reset through the API. Contact support for assistance.
+## Usage
 
-### Q: Can I register multiple users with a single request?
-A: No, the API currently supports registering one user at a time.
+1. Configure the application by updating the `config` section in the `app.py` file.
+
+2. Run the application:
+
+   ```bash
+   python app.py
+   ```
+
+3. Access the application in your web browser at `https://localhost:443`.
+
+## API Documentation
+
+For detailed information on using the API, refer to the [API Documentation](docs/API_DOCUMENTATION.md).
+
+## Contributing
+
+If you'd like to contribute to this project, please follow the [Contributing Guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- Thanks to the Flask community for providing a robust web framework.
+- ...
 
 ---
