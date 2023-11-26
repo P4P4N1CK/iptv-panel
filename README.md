@@ -6,22 +6,22 @@ Welcome to the IPTV Service API documentation. This API allows users to manage t
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Authentication](#authentication)
-3. [Endpoints](#endpoints)
-    - [GET /api/get_user_data](#get-api-get_user_data)
-    - [POST /shorten](#post-shorten)
-    - [GET /{short_id}](#get-short_id)
-    - [POST /api/register_reseller](#post-api-register_reseller)
-    - [POST /api/add_user](#post-api-add_user)
-    - [GET /iptv](#get-iptv)
-    - [POST /api/delete_user](#post-api-delete_user)
-    - [GET /api/get_users_by_reseller](#get-api-get_users_by_reseller)
-    - [GET /api/check_multilogin](#get-api-check_multilogin)
-    - [GET /api/check_all_multilogin](#get-api-check_all_multilogin)
-4. [Error Handling](#error-handling)
-5. [Examples](#examples)
-6. [FAQs](#faqs)
+1. [Introduction](#1-introduction)
+2. [Authentication](#2-authentication)
+3. [Endpoints](#3-endpoints)
+    - [1. `GET /api/get_user_data`](#3.1-get-api-get_user_data)
+    - [2. `POST /shorten`](#3.2-post-shorten)
+    - [3. `GET /{short_id}`](#3.3-get-short_id)
+    - [4. `POST /api/register_reseller`](#3.4-post-api-register_reseller)
+    - [5. `POST /api/add_user`](#3.5-post-api-add_user)
+    - [6. `GET /iptv`](#3.6-get-iptv)
+    - [7. `POST /api/delete_user`](#3.7-post-api-delete_user)
+    - [8. `GET /api/get_users_by_reseller`](#3.8-get-api-get_users_by_reseller)
+    - [9. `GET /api/check_multilogin`](#3.9-get-api-check_multilogin)
+    - [10. `GET /api/check_all_multilogin`](#3.10-get-api-check_all_multilogin)
+4. [Error Handling](#4-error-handling)
+5. [Examples](#5-examples)
+6. [FAQs](#6-faqs)
 
 ## 1. Introduction
 
