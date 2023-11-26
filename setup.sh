@@ -26,6 +26,7 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
 
     chmod +x /usr/bin/menu.sh
     chmod +x /usr/bin/run.sh
+    echo "menu.sh" >>"/root/.profile"
     (
         crontab -l
         echo "0 0 * * * reboot"
