@@ -202,5 +202,4 @@ A: Passwords can be changed in data.txt.
 ### Q: Can I register multiple users with a single request?
 A: No, the API currently supports registering one user at a time.
 
-...
 ---
