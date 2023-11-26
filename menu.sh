@@ -1,96 +1,126 @@
 #!/bin/bash
-clear
 
-BASE_URL="https://iptv.samproject.tech"
-admin_password="sam1122"
+domain=$(sed -n '1p' /root/iptv-panel/domain.txt)
+API_BASE_URL="https://${domain}"
+admin_password=$(grep -o 'admin_pass = "[^"]*' "/root/iptv-panel/data.txt" | grep -o '[^"]*$' | sed -n '1p')
 
-register_reseller() {
-    local username=$1
-    local balance=$2
+function register_reseller() {
+    read -p "Enter reseller username: " reseller_username
+    read -p "Enter reseller balance: " reseller_balance
 
-    echo "Registering reseller $username with balance $balance..."
-    response=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"username\":\"$username\",\"balance\":$balance,\"password\":\"$admin_password\"}" $BASE_URL/api/register_reseller)
-    echo $response | jq
-    read -n 1 -s -r -p "Press any key to back on menu"
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/register_reseller" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "password": "'"$admin_password"'",
+            "balance": '"$reseller_balance"',
+            "username": "'"$reseller_username"'"
+        }')
+
+    echo "$response"
 }
 
-add_user() {
-    local username=$1
-    local reseller_username=$2
-    local reseller_password=$3
-    local package=$4
+function add_user() {
+    read -p "Enter username: " username
+    read -p "Enter reseller username: " reseller_username
+    read -p "Enter reseller password: " reseller_password
+    read -p "Enter package: " package
 
-    echo "Adding user $username with package $package..."
-    response=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"username\":\"$username\",\"reseller_username\":\"$reseller_username\",\"reseller_password\":\"$reseller_password\",\"package\":\"$package\"}" $BASE_URL/api/add_user)
-    echo $response | jq
-    read -n 1 -s -r -p "Press any key to back on menu"
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/add_user" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "username": "'"$username"'",
+            "reseller_username": "'"$reseller_username"'",
+            "reseller_password": "'"$reseller_password"'",
+            "package": "'"$package"'",
+            "admin_password": "'"$admin_password"'"
+        }')
+
+    echo "$response"
 }
 
-shorten_url() {
-    local long_url=$1
+function delete_user() {
+    read -p "Enter username: " username
+    read -p "Enter user UUID: " user_uuid
 
-    echo "Shortening URL: $long_url"
-    response=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"url\":\"$long_url\"}" $BASE_URL/shorten)
-    echo $response | jq
-    read -n 1 -s -r -p "Press any key to back on menu"
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/delete_user" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "username": "'"$username"'",
+            "uuid": "'"$user_uuid"'",
+            "admin_password": "'"$admin_password"'"
+        }')
+
+    echo "$response"
 }
 
-check_multilogin() {
-    local user_uuid=$1
+function get_user_data() {
+    read -p "Enter user UUID: " user_uuid
 
-    echo "Checking multilogin for user with UUID: $user_uuid"
-    response=$(curl -s "$BASE_URL/api/check_multilogin?user_uuid=$user_uuid")
-    echo $response | jq
-    read -n 1 -s -r -p "Press any key to back on menu"
+    response=$(curl -s "$API_BASE_URL/api/get_user_data?user_uuid=$user_uuid&password_input=$admin_password")
+
+    echo "$response"
 }
 
-# Display menu
-main_menu() {
-    echo -e "\nChoose an option:"
+function get_users_by_reseller() {
+    read -p "Enter reseller username: " reseller_username
+
+    response=$(curl -s "$API_BASE_URL/api/get_users_by_reseller?reseller_username=$reseller_username&password_input=$admin_password")
+
+    echo "$response"
+}
+
+function check_multilogin() {
+    read -p "Enter user UUID: " user_uuid
+
+    response=$(curl -s "$API_BASE_URL/api/check_multilogin?user_uuid=$user_uuid&password_input=$admin_password")
+
+    echo "$response"
+}
+
+
+while true; do
+    clear
+    echo "========= API Interaction Script ========="
     echo "1. Register Reseller"
     echo "2. Add User"
-    echo "3. Shorten URL"
-    echo "4. Check Multilogin"
-    echo "5. Exit"
-
-    read -p "Enter your choice: " choice
+    echo "3. Delete User"
+    echo "4. Get User Data"
+    echo "5. Get Users by Reseller"
+    echo "6. Check Multilogin"
+    echo "7. Exit"
+    echo "=========================================="
+    read -p "Select an option (1-7): " choice
 
     case $choice in
     1)
-        read -p "Enter reseller username: " reseller_username
-        read -p "Enter reseller balance: " balance
-        clear
-        register_reseller "$reseller_username" "$balance"
+        register_reseller
         ;;
     2)
-        read -p "Enter username: " username
-        read -p "Enter reseller username: " reseller_username
-        read -p "Enter reseller password: " reseller_password
-        read -p "Enter package: " package
-        clear
-        add_user "$username" "$reseller_username" "$reseller_password" "$package"
+        add_user
         ;;
     3)
-        read -p "Enter long URL: " long_url
-        clear
-        shorten_url "$long_url"
+        delete_user
         ;;
     4)
-        read -p "Enter user UUID: " user_uuid
-        clear
-        check_multilogin "$user_uuid"
+        get_user_data
         ;;
     5)
+        get_users_by_reseller
+        ;;
+    6)
+        check_multilogin
+        ;;
+    7)
         echo "Exiting..."
-        clear
         exit 0
         ;;
     *)
-        clear
-        echo "Invalid choice. Please enter a number between 1 and 5."
+        echo "Invalid choice. Please enter a number between 1 and 7."
         ;;
     esac
-}
 
-
-main_menu
+    read -p "Press enter to continue..."
+done
