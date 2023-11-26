@@ -26,7 +26,7 @@ bash <(curl -s https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/setu
     - [9. `GET /api/check_multilogin`](#9-get-apicheck_multilogin)
     - [10. `GET /api/check_all_multilogin`](#10-get-apicheck_all_multilogin)
     - [11. `POST /api/renew_user`](#11-post-apirenew_user)
-    - [12. `POST /api/add_balance`](#12-post-apiadd_balance)
+    - [12. `POST /api/add_balance`](#12-post-apiadd_reseller_balance)
 4. [Error Handling](#4-error-handling)
 5. [Examples](#5-examples)
 6. [FAQs](#6-faqs)
@@ -189,7 +189,7 @@ Returns a success message or an error if the user is not found.
 
 **Description**
 
-Add balance to a user's account.
+Add balance to a seller's account.
 
 **Request Body**
 
