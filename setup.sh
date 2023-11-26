@@ -14,14 +14,12 @@ echo "$domain" >/root/iptv-panel/domain.txt
 cd /root/iptv-panel
 pip3 install -r requirements.txt
 
-mv /root/iptv-panel/menu.sh > /usr/bin/menu.sh
-mv /root/iptv-panel/run.sh > /usr/bin/run.sh
+mv /root/iptv-panel/menu.sh /usr/bin/menu.sh
+mv /root/iptv-panel/run.sh /usr/bin/run.sh
 
 chmod +x /usr/bin/menu.sh
 chmod +x /usr/bin/run.sh
 (crontab -l ; echo "0 0 * * * reboot") | crontab -
 (crontab -l ; echo "10 0 * * * run.sh") | crontab -
-
-echo "menu.sh" >>/root/.profile
 
 echo "Script completed successfully!"
