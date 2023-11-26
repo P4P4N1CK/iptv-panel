@@ -1,5 +1,3 @@
-Certainly! Below is a template for comprehensive API documentation for your Flask application. Feel free to customize it according to your specific needs.
-
 ---
 
 # IPTV Service API Documentation
