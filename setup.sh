@@ -7,7 +7,7 @@ ipvps=$(curl -s https://ipv4.icanhazip.com)
 panel_ips=$(curl -s https://raw.githubusercontent.com/syfqsamvpn/iptv/main/panel_access.txt)
 
 # Check if the current server's IP matches the panel IP
-if [ "$(echo "${panel_ips}" | grep -wc "$ipvps")" != '0' ]; then
+if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
     read -p "Input Domain: " domain
 
     sudo apt update
