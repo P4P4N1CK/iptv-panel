@@ -40,6 +40,53 @@ function add_user() {
     echo "$response"
 }
 
+function add_balance() {
+    read -p "Enter user UUID to add balance: " user_uuid
+    read -p "Enter amount to add: " amount
+
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/add_balance" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "user_uuid": "'"$user_uuid"'",
+            "amount": '"$amount"',
+            "admin_password": "'"$admin_password"'"
+        }')
+
+    echo "$response"
+}
+
+function renew_user() {
+    read -p "Enter user UUID to renew: " user_uuid
+
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/renew_user" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "user_uuid": "'"$user_uuid"'",
+            "admin_password": "'"$admin_password"'"
+        }')
+
+    echo "$response"
+}
+
+function add_balance() {
+    read -p "Enter user UUID to add balance: " user_uuid
+    read -p "Enter amount to add: " amount
+
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/add_balance" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "user_uuid": "'"$user_uuid"'",
+            "amount": '"$amount"',
+            "admin_password": "'"$admin_password"'"
+        }')
+
+    echo "$response"
+}
+
+
 function delete_user() {
     read -p "Enter username: " username
     read -p "Enter user UUID: " user_uuid
@@ -93,10 +140,12 @@ while true; do
     echo "4. Get User Data"
     echo "5. Get Users by Reseller"
     echo "6. Check Multilogin"
-    echo "7. Restart Services"
-    echo "8. Exit"
+    echo "7. Renew User"
+    echo "8. Add Balance"
+    echo "9. Restart Services"
+    echo "10. Exit"
     echo "=========================================="
-    read -p "Select an option (1-7): " choice
+    read -p "Select an option (1-10): " choice
 
     case $choice in
     1)
@@ -118,14 +167,20 @@ while true; do
         check_multilogin
         ;;
     7)
-        restart_api
+        renew_user
         ;;
     8)
+        add_balance
+        ;;
+    9)
+        restart_api
+        ;;
+    10)
         echo "Exiting..."
         exit 0
         ;;
     *)
-        echo "Invalid choice. Please enter a number between 1 and 7."
+        echo "Invalid choice. Please enter a number between 1 and 10."
         ;;
     esac
 
