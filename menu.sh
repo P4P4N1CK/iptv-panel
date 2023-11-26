@@ -80,6 +80,9 @@ function check_multilogin() {
     echo "$response"
 }
 
+function restart_api() {
+    run.sh
+}
 
 while true; do
     clear
@@ -90,7 +93,8 @@ while true; do
     echo "4. Get User Data"
     echo "5. Get Users by Reseller"
     echo "6. Check Multilogin"
-    echo "7. Exit"
+    echo "7. Restart Services"
+    echo "8. Exit"
     echo "=========================================="
     read -p "Select an option (1-7): " choice
 
@@ -114,6 +118,9 @@ while true; do
         check_multilogin
         ;;
     7)
+        restart_api
+        ;;
+    8)
         echo "Exiting..."
         exit 0
         ;;
