@@ -40,22 +40,6 @@ function add_user() {
     echo "$response"
 }
 
-function add_balance() {
-    read -p "Enter user UUID to add balance: " user_uuid
-    read -p "Enter amount to add: " amount
-
-    response=$(curl -s --request POST \
-        --url "$API_BASE_URL/api/add_balance" \
-        --header 'Content-Type: application/json' \
-        --data '{
-            "user_uuid": "'"$user_uuid"'",
-            "amount": '"$amount"',
-            "admin_password": "'"$admin_password"'"
-        }')
-
-    echo "$response"
-}
-
 function renew_user() {
     read -p "Enter user UUID to renew: " user_uuid
 
@@ -70,15 +54,15 @@ function renew_user() {
     echo "$response"
 }
 
-function add_balance() {
-    read -p "Enter user UUID to add balance: " user_uuid
+function add_reseller_balance() {
+    read -p "Enter reseller username to add balance: " username
     read -p "Enter amount to add: " amount
 
     response=$(curl -s --request POST \
-        --url "$API_BASE_URL/api/add_balance" \
+        --url "$API_BASE_URL/api/add_reseller_balance" \
         --header 'Content-Type: application/json' \
         --data '{
-            "user_uuid": "'"$user_uuid"'",
+            "username": "'"$username"'",
             "amount": '"$amount"',
             "admin_password": "'"$admin_password"'"
         }')
@@ -170,7 +154,7 @@ while true; do
         renew_user
         ;;
     8)
-        add_balance
+        add_reseller_balance
         ;;
     9)
         restart_api
