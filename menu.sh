@@ -64,7 +64,7 @@ function add_reseller_balance() {
         --data '{
             "username": "'"$username"'",
             "amount": '"$amount"',
-            "admin_password": "'"$admin_password"'"
+            "password": "'"$admin_password"'"
         }')
 
     echo "$response"
