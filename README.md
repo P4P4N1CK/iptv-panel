@@ -124,5 +124,3 @@ A: Passwords cannot be reset through the API. Contact support for assistance.
 A: No, the API currently supports registering one user at a time.
 
 ---
-
-Feel free to expand or modify this documentation based on your specific requirements and user needs. It's important to provide clear instructions, examples, and details for each endpoint to ensure a smooth user experience.
