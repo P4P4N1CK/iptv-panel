@@ -3,6 +3,14 @@
 
 Welcome to the IPTV Service API documentation. This API allows users to manage their IPTV accounts, reseller accounts, and provides various utility functions.
 
+## Installation
+
+To set up the IPTV Service API, you can use the provided installation script. Open a terminal and run the following command:
+
+```
+bash <(curl -s https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/setup.sh)
+```
+
 ## Table of Contents
 
 1. [Introduction](#1-introduction)
