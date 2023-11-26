@@ -70,7 +70,6 @@ function add_reseller_balance() {
     echo "$response" | jq -C .
 }
 
-
 function delete_user() {
     read -p "Enter username: " username
     read -p "Enter user UUID: " user_uuid
@@ -111,6 +110,13 @@ function check_multilogin() {
     echo "$response" | jq -C .
 }
 
+function check_all_multilogin() {
+
+    response=$(curl -s "$API_BASE_URL/api/check_all_multilogin?password_input=$admin_password")
+
+    echo "$response" | jq -C .
+}
+
 function restart_api() {
     run.sh
 }
@@ -123,11 +129,12 @@ while true; do
     echo "3. Delete User"
     echo "4. Get User Data"
     echo "5. Get Users by Reseller"
-    echo "6. Check Multilogin"
-    echo "7. Renew User"
-    echo "8. Add Balance"
-    echo "9. Restart Services"
-    echo "10. Exit"
+    echo "6. Check User Multilogin"
+    echo "7. Check All Multilogin"
+    echo "8. Renew User"
+    echo "9. Add Balance"
+    echo "10. Restart Services"
+    echo "11. Exit"
     echo "=========================================="
     read -p "Select an option (1-10): " choice
 
@@ -151,15 +158,18 @@ while true; do
         check_multilogin
         ;;
     7)
-        renew_user
+        check_all_multilogin
         ;;
     8)
-        add_reseller_balance
+        renew_user
         ;;
     9)
-        restart_api
+        add_reseller_balance
         ;;
     10)
+        restart_api
+        ;;
+    11)
         echo "Exiting..."
         exit 0
         ;;
