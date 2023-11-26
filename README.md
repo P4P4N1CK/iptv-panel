@@ -1,4 +1,3 @@
----
 # IPTV Service API Documentation
 
 Welcome to the IPTV Service API documentation. This API allows users to manage their IPTV accounts, reseller accounts, and provides various utility functions.
@@ -7,7 +6,7 @@ Welcome to the IPTV Service API documentation. This API allows users to manage t
 
 To set up the IPTV Service API, you can use the provided installation script. Open a terminal and run the following command:
 
-```
+```bash
 bash <(curl -s https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/setup.sh)
 ```
 
@@ -26,6 +25,8 @@ bash <(curl -s https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/setu
     - [8. `GET /api/get_users_by_reseller`](#8-get-apiget_users_by_reseller)
     - [9. `GET /api/check_multilogin`](#9-get-apicheck_multilogin)
     - [10. `GET /api/check_all_multilogin`](#10-get-apicheck_all_multilogin)
+    - [11. `POST /api/renew_user`](#11-post-apirenew_user)
+    - [12. `POST /api/add_balance`](#12-post-apiadd_balance)
 4. [Error Handling](#4-error-handling)
 5. [Examples](#5-examples)
 6. [FAQs](#6-faqs)
@@ -74,7 +75,6 @@ Returns the shortened URL.
 **Description**
 
 Redirects to the original URL corresponding to the given short ID.
-
 
 ### 5. `POST /api/add_user`
 
@@ -168,6 +168,38 @@ Check the multilogin status for all users.
 
 Returns the multilogin status for all users.
 
+### 11. `POST /api/renew_user`
+
+**Description**
+
+Renew a user's subscription.
+
+**Request Body**
+
+- `username` (string, required): User's username.
+- `uuid` (string, required): User's UUID.
+- `admin_password` (string, required): Admin password for authentication.
+
+**Response**
+
+Returns a success message or an error if the user is not found.
+
+### 12. `POST /api/add_balance`
+
+**Description**
+
+Add balance to a user's account.
+
+**Request Body**
+
+- `username` (string, required): User's username.
+- `uuid` (string, required): User's UUID.
+- `amount` (number, required): Amount to add to the user's balance.
+- `admin_password` (string, required): Admin password for authentication.
+
+**Response**
+
+Returns the updated balance or an error if the user is not found.
 
 ## 4. Error Handling
 
@@ -193,7 +225,19 @@ Below are additional examples for the newly documented endpoints:
 
 2. **Delete User**
    ```bash
-   curl -X POST -H "Content-Type: application/json" -d '{"username": "user_to_delete", "uuid": "user_uuid", "admin_password": "admin_pass"}' "https://your-api-host/api/delete_user"
+   curl -X POST -H "Content-Type
+
+: application/json" -d '{"username": "user_to_delete", "uuid": "user_uuid", "admin_password": "admin_pass"}' "https://your-api-host/api/delete_user"
+   ```
+
+3. **Renew User**
+   ```bash
+   curl -X POST -H "Content-Type: application/json" -d '{"username": "user_to_renew", "uuid": "user_uuid", "admin_password": "admin_pass"}' "https://your-api-host/api/renew_user"
+   ```
+
+4. **Add Balance**
+   ```bash
+   curl -X POST -H "Content-Type: application/json" -d '{"username": "user_to_add_balance", "uuid": "user_uuid", "amount": 10, "admin_password": "admin_pass"}' "https://your-api-host/api/add_balance"
    ```
 
 ## 6. FAQs
