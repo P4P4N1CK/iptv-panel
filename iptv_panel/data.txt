@@ -1,0 +1,16 @@
+m3u_base = "https://iptv.samproject.tech"
+admin_pass = "replace_admin_password"
+redirect_url = "https://t.me/sam_sfx/"
+USER_IPTV_FILE = "user_iptv.json"
+USER_LOG_FILE = "user_log.json"
+RESELLER_FILE = "reseller.json"
+SNIFFER_DATA_FILE = "sniffer.json"
+OTT_FILE = "iptv.m3u"
+EXPIRED_FILE = "expired.m3u"
+STORAGE_FILE = "short_links.json"
+
+package_info = {
+    'a': {'price': 10, 'days': 30},
+    'b': {'price': 20, 'days': 60},
+    'c': {'price': 30, 'days': 90}
+}
