@@ -12,6 +12,7 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
 
     sudo apt update
     sudo apt upgrade -y
+    apt install jq -y
 
     sudo apt install -y python3-pip
     sudo apt install git -y
@@ -22,12 +23,12 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
     cd /root/iptv-panel
     pip3 install -r requirements.txt
 
-    mv /root/iptv-panel/menu.sh /usr/bin/menu.sh
+    mv /root/iptv-panel/menu.sh /usr/bin/menu
     mv /root/iptv-panel/run.sh /usr/bin/run.sh
 
-    chmod +x /usr/bin/menu.sh
+    chmod +x /usr/bin/menu
     chmod +x /usr/bin/run.sh
-    echo "menu.sh" >>"/root/.profile"
+    echo "menu" >>"/root/.profile"
     (
         crontab -l
         echo "0 0 * * * reboot"
