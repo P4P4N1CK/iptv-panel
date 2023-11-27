@@ -12,7 +12,7 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
 
     sudo apt update
     sudo apt upgrade -y
-    apt install jq -y
+    sudo apt install jq -y
 
     sudo apt install -y python3-pip
     sudo apt install git -y
