@@ -29,10 +29,12 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
     mv /root/iptv-panel/menu.sh /usr/bin/menu
     mv /root/iptv-panel/run.sh /usr/bin/run.sh
     mv /root/iptv-panel/ott_sam.sh /usr/bin/ott_sam.sh
+    mv /root/iptv-panel/start_bot.sh /usr/bin/start_bot.sh
 
     chmod +x /usr/bin/menu
     chmod +x /usr/bin/run.sh
     chmod +x /usr/bin/ott_sam.sh
+    chmod +x /usr/bin/start_bot.sh
     echo "menu" >>"/root/.profile"
     (
         crontab -l
