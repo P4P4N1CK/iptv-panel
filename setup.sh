@@ -18,6 +18,7 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
     sudo apt install jq -y
     sudo apt install -y python3-pip
     sudo apt install git -y
+    apt install screen -y
     sudo apt install certbot -y
     sudo certbot certonly --standalone -d ${domain}
     git clone https://github.com/syfqsamvpn/iptv-panel.git
@@ -27,9 +28,11 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
 
     mv /root/iptv-panel/menu.sh /usr/bin/menu
     mv /root/iptv-panel/run.sh /usr/bin/run.sh
+    mv /root/iptv-panel/ott_sam.sh /usr/bin/ott_sam.sh
 
     chmod +x /usr/bin/menu
     chmod +x /usr/bin/run.sh
+    chmod +x /usr/bin/ott_sam.sh
     echo "menu" >>"/root/.profile"
     (
         crontab -l
