@@ -1,6 +1,9 @@
 #!/bin/bash
 clear
 
+#!/bin/bash
+clear
+
 ipvps=$(curl -s https://ipv4.icanhazip.com)
 
 # Fetch the panel IP from the provided URL
@@ -13,7 +16,6 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
     sudo apt update
     sudo apt upgrade -y
     sudo apt install jq -y
-
     sudo apt install -y python3-pip
     sudo apt install git -y
     sudo apt install certbot -y
@@ -33,11 +35,37 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
         crontab -l
         echo "0 0 * * * reboot"
     ) | crontab -
-    (
-        crontab -l
-        echo "10 0 * * * run.sh"
-    ) | crontab -
     run.sh
+    cd /root
+
+    cat >/etc/systemd/system/rc-local.service <<-END
+[Unit]
+Description=/etc/rc.local
+ConditionPathExists=/etc/rc.local
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+[Install]
+WantedBy=multi-user.target
+END
+
+    # nano /etc/rc.local
+    cat >/etc/rc.local <<-END
+#!/bin/sh -e
+# rc.local
+# By default this script does nothing.
+exit 0
+END
+
+    chmod +x /etc/rc.local
+    sed -i '$ i\run.sh' /etc/rc.local >/dev/null 2>&1
+    systemctl enable rc-local >/dev/null 2>&1
+    systemctl start rc-local.service >/dev/null 2>&1
+
     sudo -i
 else
     echo "Access denied. Panel IP matches server IP."
