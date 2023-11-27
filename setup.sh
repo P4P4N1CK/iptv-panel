@@ -70,7 +70,7 @@ END
     sed -i '$ i\run.sh' /etc/rc.local >/dev/null 2>&1
     systemctl enable rc-local >/dev/null 2>&1
     systemctl start rc-local.service >/dev/null 2>&1
-
+    rm -rf /root/iptv-panel/setup.sh
     sudo -i
 else
     echo "Access denied. Panel IP matches server IP."
