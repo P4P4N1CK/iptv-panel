@@ -41,14 +41,19 @@ function add_user() {
 }
 
 function renew_user() {
+    read -p "Enter reseller username: " reseller_username
+    read -p "Enter reseller password: " reseller_password
     read -p "Enter user UUID to renew: " user_uuid
+    read -p "Enter package: " package
 
     response=$(curl -s --request POST \
         --url "$API_BASE_URL/api/renew_user" \
         --header 'Content-Type: application/json' \
         --data '{
-            "user_uuid": "'"$user_uuid"'",
-            "admin_password": "'"$admin_password"'"
+            "reseller_username": "'"$reseller_username"'",
+            "reseller_password": "'"$reseller_password"'",
+            "uuid": "'"$user_uuid"'",
+            "package": "'"$package"'"
         }')
 
     echo "$response" | jq -C .
