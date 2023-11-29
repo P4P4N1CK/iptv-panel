@@ -21,3 +21,6 @@ package_info = {
     'c': {'price': 30, 'days': 90},
     'trial' : {'price': 3, 'days': 5}
 }
+
+ADMIN_RES_USER = "change_your_user"
+ADMIN_RES_PASS = "change_your_password"
