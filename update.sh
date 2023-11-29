@@ -14,5 +14,6 @@ if ! crontab -l | grep -q "ott_sam.sh -b"; then
         crontab -l
         echo "0 13 * * * ott_sam.sh -b > /root/t1.log 2>&1"
     ) | crontab -
-    run.sh
 fi
+
+run.sh
