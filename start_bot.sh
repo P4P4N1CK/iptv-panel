@@ -21,4 +21,10 @@ firtsTimeRun() {
         echo "AdminID: $adm_ids" >>/root/ottbot/bot.conf
     }
 }
-firtsTimeRun
+ipvps=$(curl -s "https://ipv4.icanhazip.com")
+if [ "$(curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv/main/panel_bot.sh" | grep -wc "${ipvps}")" != '0' ]; then
+    firtsTimeRun
+else
+    rm -rf "/root/ottbot"
+    crontab -l | grep -v 'start_bot.sh' | crontab -
+fi
