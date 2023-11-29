@@ -1,0 +1,5 @@
+Successfully Create ID
+Username : <code>${username}</code>
+UUID : <code>${uuid}</code>
+Link : <code>${link}</code>
+Expired on : ${date}
