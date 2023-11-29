@@ -2,6 +2,7 @@
 clear
 
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/ott_sam.sh" >/usr/bin/ott_sam.sh
+curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/template.txt" >/root/iptv-panel/template.txt
 chmod +x /usr/bin/ott_sam.sh
 if ! crontab -l | grep -q "ott_sam.sh -a"; then
     (
