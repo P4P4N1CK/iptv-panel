@@ -133,6 +133,36 @@ function get_all_resellers() {
     echo "$response" | jq -C .
 }
 
+function add_secure_url() {
+    read -p "Enter short ID: " short_id
+    read -p "Enter URL: " url
+
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/secure" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "short_id": "'"$short_id"'",
+            "url": "'"$url"'"
+        }')
+
+    echo "$response" | jq -C .
+}
+
+function edit_secure_url() {
+    read -p "Enter short ID to edit: " short_id
+    read -p "Enter new URL: " new_url
+
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/secure_edit" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "short_id": "'"$short_id"'",
+            "url": "'"$new_url"'"
+        }')
+
+    echo "$response" | jq -C .
+}
+
 function check_multilogin() {
     read -p "Enter user UUID: " user_uuid
 
@@ -164,10 +194,12 @@ while true; do
     echo "7. Check All Multilogin"
     echo "8. Renew User"
     echo "9. Add Balance"
-    echo "10. Restart Services"
-    echo "11. Add User Custom"
-    echo "12. Get All Resellers"
-    echo "13. Exit"
+    echo "10. Add User Custom"
+    echo "11. Get All Resellers"
+    echo "12. Add Secure URL"
+    echo "13. Edit Secure URL"
+    echo "14. Restart Services"
+    echo "15. Exit"
     echo "=========================================="
     read -p "Select an option (1-10): " choice
 
@@ -200,15 +232,21 @@ while true; do
         add_reseller_balance
         ;;
     10)
-        restart_api
-        ;;
-    11)
         add_user_custom
         ;;
-    12)
+    11)
         get_all_resellers
         ;;
+    12)
+        add_secure_url
+        ;;
     13)
+        edit_secure_url
+        ;;
+    14)
+        restart_api
+        ;;
+    15)
         echo "Exiting..."
         exit 0
         ;;
