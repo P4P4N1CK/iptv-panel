@@ -107,6 +107,32 @@ function get_users_by_reseller() {
     echo "$response" | jq -C .
 }
 
+function add_user_custom() {
+    read -p "Enter reseller username: " reseller_username
+    read -p "Enter reseller password: " reseller_password
+    read -p "Enter username: " username
+    read -p "Enter number of days: " days
+
+    response=$(curl -s --request POST \
+        --url "https://iptv.samproject.tech/api/add_user_custom" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "admin_password": "'"$admin_password"'",
+            "reseller_username": "'"$reseller_username"'",
+            "reseller_password": "'"$reseller_password"'",
+            "username": "'"$username"'",
+            "days": '"$days"'
+        }')
+
+    echo "$response" | jq -C .
+}
+
+function get_all_resellers() {
+    response=$(curl -s "https://iptv.samproject.tech/api/get_all_resellers?password_input=$admin_password")
+
+    echo "$response" | jq -C .
+}
+
 function check_multilogin() {
     read -p "Enter user UUID: " user_uuid
 
@@ -139,7 +165,9 @@ while true; do
     echo "8. Renew User"
     echo "9. Add Balance"
     echo "10. Restart Services"
-    echo "11. Exit"
+    echo "11. Add User Custom"
+    echo "12. Get All Resellers"
+    echo "13. Exit"
     echo "=========================================="
     read -p "Select an option (1-10): " choice
 
@@ -175,6 +203,12 @@ while true; do
         restart_api
         ;;
     11)
+        add_user_custom
+        ;;
+    12)
+        get_all_resellers
+        ;;
+    13)
         echo "Exiting..."
         exit 0
         ;;
