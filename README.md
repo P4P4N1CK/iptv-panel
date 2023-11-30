@@ -281,12 +281,12 @@ Below are additional examples for the newly documented endpoints:
 
 5. **Add User Custom**
    ```bash
-   curl -X POST -H "Content-Type: application/json" -d '{"admin_password": "12345678", "reseller_username": "752710770", "reseller_password": "oSEtmyN5uoSi", "username": "samvpn53g44", "days": 7}' "https://iptv.samproject.tech/api/add_user_custom"
+   curl -X POST -H "Content-Type: application/json" -d '{"admin_password": "12345678", "reseller_username": "752710770", "reseller_password": "oSEtmyN5uoSi", "username": "samvpn53g44", "days": 7}' "https://your-api-host/api/add_user_custom"
    ```
 
 6. **Get All Resellers**
    ```bash
-   curl -X GET "https://iptv.samproject.tech/api/get_all_resellers?password_input=12345678"
+   curl -X GET "https://your-api-host/api/get_all_resellers?password_input=12345678"
    ```
 
 ## 6. FAQs
