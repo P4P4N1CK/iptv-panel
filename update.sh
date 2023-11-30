@@ -3,6 +3,7 @@ clear
 
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/ott_sam.sh" >/usr/bin/ott_sam.sh
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/menu.sh" >/usr/bin/menu
+curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/data.txt" >/root/iptv-panel/data.txt
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/template.txt" >/root/iptv-panel/template.txt
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/secure_short.json" >/root/iptv-panel/secure_short.json
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/banned.m3u" >/root/iptv-panel/banned.m3u
