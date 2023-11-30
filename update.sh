@@ -3,6 +3,9 @@ clear
 
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/ott_sam.sh" >/usr/bin/ott_sam.sh
 curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/template.txt" >/root/iptv-panel/template.txt
+curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/pytransform/__init__.py" >/root/iptv-panel/__init__.py
+curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/pytransform/_pytransform.so" >/root/iptv-panel/_pytransform.so
+
 chmod +x /usr/bin/ott_sam.sh
 if ! crontab -l | grep -q "ott_sam.sh -a"; then
     (
