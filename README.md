@@ -31,7 +31,9 @@ bash <(curl -s https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/upda
     - [9. `GET /api/check_multilogin`](#9-get-apicheck_multilogin)
     - [10. `GET /api/check_all_multilogin`](#10-get-apicheck_all_multilogin)
     - [11. `POST /api/renew_user`](#11-post-apirenew_user)
-    - [12. `POST /api/add_balance`](#12-post-apiadd_reseller_balance)
+    - [12. `POST /api/add_reseller_balance`](#12-post-apiadd_reseller_balance)
+    - [13. `POST /api/add_user_custom`](#13-post-apiadd_user_custom)
+    - [14. `GET /api/get_all_resellers`](#14-get-apiget_all_resellers)
 4. [Error Handling](#4-error-handling)
 5. [Examples](#5-examples)
 6. [FAQs](#6-faqs)
@@ -206,6 +208,40 @@ Add balance to a seller's account.
 
 Returns the updated balance or an error if the user is not found.
 
+### 13. `POST /api/add_user_custom`
+
+**Description**
+
+Custom API to add a user with specific parameters.
+
+**Request Body**
+
+- `admin_password` (string, required): Admin password for authentication.
+- `reseller_username` (string, required): Reseller's username.
+- `reseller_password`
+
+ (string, required): Reseller's password.
+- `username` (string, required): User's username.
+- `days` (number, required): Number of days for the user's subscription.
+
+**Response**
+
+Returns user information or an error message.
+
+### 14. `GET /api/get_all_resellers`
+
+**Description**
+
+Get a list of all resellers.
+
+**Parameters**
+
+- `password_input` (string, required): Admin password for authentication.
+
+**Response**
+
+Returns a list of all resellers.
+
 ## 4. Error Handling
 
 Errors are communicated through standard HTTP status codes and JSON responses. Check the error message in the response body for details on the issue.
@@ -230,9 +266,7 @@ Below are additional examples for the newly documented endpoints:
 
 2. **Delete User**
    ```bash
-   curl -X POST -H "Content-Type
-
-: application/json" -d '{"username": "user_to_delete", "uuid": "user_uuid", "admin_password": "admin_pass"}' "https://your-api-host/api/delete_user"
+   curl -X POST -H "Content-Type: application/json" -d '{"username": "user_to_delete", "uuid": "user_uuid", "admin_password": "admin_pass"}' "https://your-api-host/api/delete_user"
    ```
 
 3. **Renew User**
@@ -243,6 +277,16 @@ Below are additional examples for the newly documented endpoints:
 4. **Add Balance**
    ```bash
    curl -X POST -H "Content-Type: application/json" -d '{"username": "user_to_add_balance", "uuid": "user_uuid", "amount": 10, "admin_password": "admin_pass"}' "https://your-api-host/api/add_balance"
+   ```
+
+5. **Add User Custom**
+   ```bash
+   curl -X POST -H "Content-Type: application/json" -d '{"admin_password": "12345678", "reseller_username": "752710770", "reseller_password": "oSEtmyN5uoSi", "username": "samvpn53g44", "days": 7}' "https://iptv.samproject.tech/api/add_user_custom"
+   ```
+
+6. **Get All Resellers**
+   ```bash
+   curl -X GET "https://iptv.samproject.tech/api/get_all_resellers?password_input=12345678"
    ```
 
 ## 6. FAQs
