@@ -108,8 +108,8 @@ function get_users_by_reseller() {
 }
 
 function add_user_custom() {
-    read -p "Enter reseller username: " reseller_username
-    read -p "Enter reseller password: " reseller_password
+    reseller_username=$(grep -o 'ADMIN_RES_USER = "[^"]*' "/root/iptv-panel/data.txt" | grep -o '[^"]*$' | sed -n '1p')
+    reseller_password=$(grep -o 'ADMIN_RES_PASS = "[^"]*' "/root/iptv-panel/data.txt" | grep -o '[^"]*$' | sed -n '1p')
     read -p "Enter username: " username
     read -p "Enter number of days: " days
 
