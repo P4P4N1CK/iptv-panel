@@ -114,7 +114,7 @@ function add_user_custom() {
     read -p "Enter number of days: " days
 
     response=$(curl -s --request POST \
-        --url "https://iptv.samproject.tech/api/add_user_custom" \
+        --url "$API_BASE_URL/api/add_user_custom" \
         --header 'Content-Type: application/json' \
         --data '{
             "admin_password": "'"$admin_password"'",
@@ -128,7 +128,7 @@ function add_user_custom() {
 }
 
 function get_all_resellers() {
-    response=$(curl -s "https://iptv.samproject.tech/api/get_all_resellers?password_input=$admin_password")
+    response=$(curl -s "$API_BASE_URL/api/get_all_resellers?password_input=$admin_password")
 
     echo "$response" | jq -C .
 }
