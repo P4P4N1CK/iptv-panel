@@ -255,6 +255,37 @@ Example:
 }
 ```
 
+### 15. `POST /api/add_secure_url`
+
+**Description**
+
+Add a secure URL with a short ID for redirection.
+
+**Request Body**
+
+- `short_id` (string, required): Short ID for the secure URL.
+- `url` (string, required): The URL to be associated with the short ID.
+
+**Response**
+
+Returns the success message or an error if the addition fails.
+
+### 16. `POST /api/edit_secure_url`
+
+**Description**
+
+Edit the URL associated with a secure short ID.
+
+**Request Body**
+
+- `short_id` (string, required): Short ID of the secure URL to be edited.
+- `new_url` (string, required): The new URL to replace the existing one.
+
+**Response**
+
+Returns the success message or an error if the edit fails.
+
+
 ## 5. Examples
 
 Below are additional examples for the newly documented endpoints:
