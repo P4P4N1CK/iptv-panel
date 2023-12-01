@@ -34,6 +34,8 @@ bash <(curl -s https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/upda
     - [12. `POST /api/add_reseller_balance`](#12-post-apiadd_reseller_balance)
     - [13. `POST /api/add_user_custom`](#13-post-apiadd_user_custom)
     - [14. `GET /api/get_all_resellers`](#14-get-apiget_all_resellers)
+    - [15. `GET /api/add_secure_url`](#15-post-apiadd_secure_url)
+    - [16. `GET /api/edit_secure_url`](#16-post-apiedit_secure_url)
 4. [Error Handling](#4-error-handling)
 5. [Examples](#5-examples)
 6. [FAQs](#6-faqs)
