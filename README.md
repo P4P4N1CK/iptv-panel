@@ -83,7 +83,23 @@ Returns the shortened URL.
 
 Redirects to the original URL corresponding to the given short ID.
 
-### 4. `POST /api/add_user`
+### 4. `POST /api/register_reseller`
+
+**Description**
+
+Register a new reseller with the provided information.
+
+**Request Body**
+
+- `password` (string, required): Admin password for authentication.
+- `balance` (number, required): Initial balance for the reseller.
+- `username` (string, required): Reseller's desired username.
+
+**Response**
+
+Returns reseller information, including the generated link and initial balance.
+
+### 5. `POST /api/add_user`
 
 **Description**
 
@@ -100,7 +116,7 @@ Register a new IPTV user.
 
 Returns user information, including the generated link and remaining balance.
 
-### 5. `GET /iptv`
+### 6. `GET /iptv`
 
 **Description**
 
@@ -115,7 +131,7 @@ Handles IPTV requests and ensures valid user authentication.
 
 Redirects to the appropriate content or returns an error message.
 
-### 6. `POST /api/delete_user`
+### 7. `POST /api/delete_user`
 
 **Description**
 
@@ -131,7 +147,7 @@ Deletes a user based on the provided `username`, `uuid`, and `admin_password`.
 
 Returns a success message or an error if the user is not found.
 
-### 7. `GET /api/get_users_by_reseller`
+### 8. `GET /api/get_users_by_reseller`
 
 **Description**
 
@@ -146,7 +162,7 @@ Get a list of users associated with a specific reseller.
 
 Returns a list of users associated with the reseller.
 
-### 8. `GET /api/check_multilogin`
+### 9. `GET /api/check_multilogin`
 
 **Description**
 
@@ -161,7 +177,7 @@ Check if a user has multiple logins based on the provided `user_uuid` and `passw
 
 Returns the multilogin status for the specified user.
 
-### 9. `GET /api/check_all_multilogin`
+### 10. `GET /api/check_all_multilogin`
 
 **Description**
 
@@ -175,7 +191,7 @@ Check the multilogin status for all users.
 
 Returns the multilogin status for all users.
 
-### 10. `POST /api/renew_user`
+### 11. `POST /api/renew_user`
 
 **Description**
 
@@ -192,7 +208,7 @@ Renew a user's subscription.
 
 Returns a success message or an error if the user is not found.
 
-### 11. `POST /api/add_reseller_balance`
+### 12. `POST /api/add_reseller_balance`
 
 **Description**
 
@@ -208,7 +224,7 @@ Add balance to a seller's account.
 
 Returns the updated balance or an error if the user is not found.
 
-### 12. `POST /api/add_user_custom`
+### 13. `POST /api/add_user_custom`
 
 **Description**
 
@@ -228,7 +244,7 @@ Custom API to add a user with specific parameters.
 
 Returns user information or an error message.
 
-### 13. `GET /api/get_all_resellers`
+### 14. `GET /api/get_all_resellers`
 
 **Description**
 
@@ -242,7 +258,7 @@ Get a list of all resellers.
 
 Returns a list of all resellers.
 
-### 14. `POST /api/add_secure_url`
+### 15. `POST /api/add_secure_url`
 
 **Description**
 
@@ -257,7 +273,7 @@ Add a secure URL with a short ID for redirection.
 
 Returns the success message or an error if the addition fails.
 
-### 15. `POST /api/edit_secure_url`
+### 16. `POST /api/edit_secure_url`
 
 **Description**
 
