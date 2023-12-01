@@ -242,19 +242,6 @@ Get a list of all resellers.
 
 Returns a list of all resellers.
 
-## 4. Error Handling
-
-Errors are communicated through standard HTTP status codes and JSON responses. Check the error message in the response body for details on the issue.
-
-Example:
-
-```json
-{
-    "error": "Reseller not found",
-    "code": 404
-}
-```
-
 ### 15. `POST /api/add_secure_url`
 
 **Description**
@@ -285,6 +272,18 @@ Edit the URL associated with a secure short ID.
 
 Returns the success message or an error if the edit fails.
 
+## 4. Error Handling
+
+Errors are communicated through standard HTTP status codes and JSON responses. Check the error message in the response body for details on the issue.
+
+Example:
+
+```json
+{
+    "error": "Reseller not found",
+    "code": 404
+}
+```
 
 ## 5. Examples
 
