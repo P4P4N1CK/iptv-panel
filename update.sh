@@ -12,5 +12,6 @@ chmod +x /usr/bin/ott_sam.sh
 chmod +x /usr/bin/menu
 
 echo "EXPIRED_DATA = \"expired.json\"" >/root/iptv-panel/data.txt
+touch /root/iptv-panel/expired.json
 
 run.sh
