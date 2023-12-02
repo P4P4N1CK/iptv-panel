@@ -11,7 +11,7 @@ curl -s "https://raw.githubusercontent.com/syfqsamvpn/iptv-panel/main/pytransfor
 chmod +x /usr/bin/ott_sam.sh
 chmod +x /usr/bin/menu
 
-echo "EXPIRED_DATA = \"expired.json\"" >/root/iptv-panel/data.txt
+echo "EXPIRED_DATA = \"expired.json\"" >>/root/iptv-panel/data.txt
 touch /root/iptv-panel/expired.json
 
 run.sh
