@@ -199,7 +199,8 @@ while true; do
     echo "12. Add Secure URL"
     echo "13. Edit Secure URL"
     echo "14. Restart Services"
-    echo "15. Exit"
+    echo "15. Manual Backup"
+    echo "16. Exit"
     echo "=========================================="
     read -p "Select an option (1-10): " choice
 
@@ -247,6 +248,9 @@ while true; do
         restart_api
         ;;
     15)
+        ott_sam.sh -b
+        ;;
+    16)
         echo "Exiting..."
         exit 0
         ;;
