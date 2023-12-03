@@ -8,6 +8,7 @@ USER_LOG_FILE = "user_log.json"                                                 
 RESELLER_FILE = "reseller.json"                                                         # all reseller
 SNIFFER_DATA_FILE = "sniffer.json"                                                      # sniffer data
 MULTILOGIN_DATA_FILE = "multilogin.json"                                                # multilogin data
+EXPIRED_DATA = "expired.json"                                                           # Expired data
 SECURE_SHORT_FILE = "secure_short.json"                                                 # secure link data
 SECURE_REDIRECT = "https://d25tgymtnqzu8s.cloudfront.net/smil:tv1/playlist.m3u8?id=1"   # Redirect Second
 OTT_FILE = "iptv.m3u"                                                                   # change this to change playlist
