@@ -127,6 +127,26 @@ function add_user_custom() {
     echo "$response" | jq -C .
 }
 
+function renew_user_custom() {
+    reseller_username=$(grep -o 'ADMIN_RES_USER = "[^"]*' "/root/iptv-panel/data.txt" | grep -o '[^"]*$' | sed -n '1p')
+    reseller_password=$(grep -o 'ADMIN_RES_PASS = "[^"]*' "/root/iptv-panel/data.txt" | grep -o '[^"]*$' | sed -n '1p')
+    read -p "Enter UUID: " uuid
+    read -p "Enter number of days: " days
+
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/renew_user_custom" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "admin_password": "'"$admin_password"'",
+            "reseller_username": "'"$reseller_username"'",
+            "reseller_password": "'"$reseller_password"'",
+            "uuid": "'"$uuid"'",
+            "days": '"$days"'
+        }')
+
+    echo "$response" | jq -C .
+}
+
 function get_all_resellers() {
     response=$(curl -s "$API_BASE_URL/api/get_all_resellers?password_input=$admin_password")
 
