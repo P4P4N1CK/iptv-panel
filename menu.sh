@@ -195,12 +195,13 @@ while true; do
     echo "8. Renew User"
     echo "9. Add Balance"
     echo "10. Add User Custom"
-    echo "11. Get All Resellers"
-    echo "12. Add Secure URL"
-    echo "13. Edit Secure URL"
-    echo "14. Restart Services"
-    echo "15. Manual Backup"
-    echo "16. Exit"
+    echo "11. Renew User Custom"
+    echo "12. Get All Resellers"
+    echo "13. Add Secure URL"
+    echo "14. Edit Secure URL"
+    echo "15. Restart Services"
+    echo "16. Manual Backup"
+    echo "17. Exit"
     echo "=========================================="
     read -p "Select an option (1-10): " choice
 
@@ -236,21 +237,24 @@ while true; do
         add_user_custom
         ;;
     11)
-        get_all_resellers
+        renew_user_custom
         ;;
     12)
-        add_secure_url
+        get_all_resellers
         ;;
     13)
-        edit_secure_url
+        add_secure_url
         ;;
     14)
-        restart_api
+        edit_secure_url
         ;;
     15)
-        ott_sam.sh -b
+        restart_api
         ;;
     16)
+        ott_sam.sh -b
+        ;;
+    17)
         echo "Exiting..."
         exit 0
         ;;
