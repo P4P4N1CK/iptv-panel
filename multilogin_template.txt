@@ -1,0 +1,4 @@
+User {username} has been banned
+Reason: Multilogin
+UUID: {user_uuid}
+IP: {ip_address}
