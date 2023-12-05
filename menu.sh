@@ -147,6 +147,20 @@ function renew_user_custom() {
     echo "$response" | jq -C .
 }
 
+function check_shortlink() {
+    read -p "Enter UUID: " uuid
+
+    response=$(curl -s --request POST \
+        --url "$API_BASE_URL/api/check_shortlink" \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "admin_password": "'"$admin_password"'",
+            "uuid": "'"$uuid"'"
+        }')
+
+    echo "$response" | jq -C .
+}
+
 function unban_multi() {
     read -p "Enter UUID: " uuid
 
@@ -233,12 +247,13 @@ while true; do
     echo "12. Get All Resellers"
     echo "13. Add Secure URL"
     echo "14. Edit Secure URL"
-    echo "15. Unban Multilogin"
-    echo "16. Restart Services"
-    echo "17. Manual Backup"
-    echo "18. Exit"
+    echo "15. Check Shortlink"
+    echo "16. Unban Multilogin"
+    echo "17. Restart Services"
+    echo "18. Manual Backup"
+    echo "19. Exit"
     echo "=========================================="
-    read -p "Select an option (1-18): " choice
+    read -p "Select an option (1-19): " choice
 
     case $choice in
     1)
@@ -284,15 +299,18 @@ while true; do
         edit_secure_url
         ;;
     15)
-        unban_multi
+        check_shortlink
         ;;
     16)
-        restart_api
+        unban_multi
         ;;
     17)
-        ott_sam.sh -b
+        restart_api
         ;;
     18)
+        ott_sam.sh -b
+        ;;
+    19)
         echo "Exiting..."
         exit 0
         ;;
