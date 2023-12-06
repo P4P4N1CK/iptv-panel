@@ -1,0 +1,4 @@
+Successfully Renew ID
+Username : <code>${username}</code>
+UUID : <code>${uuid}</code>
+Expired on : ${date}
