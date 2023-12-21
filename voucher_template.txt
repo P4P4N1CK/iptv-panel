@@ -1,0 +1,4 @@
+User : <code>${username}</code>
+Package : <code>${package}</code>
+Contact Reseller : <a href='tg://user?id=${message_from_id}'>Reseller</a>
+<a href='${link_voucher}'>Click Here To Claim</a>
