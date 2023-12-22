@@ -230,6 +230,11 @@ function restart_api() {
     run.sh
 }
 
+function change_secure_stat() {
+    curl --request POST \
+        --url "$API_BASE_URL/api/secure_stat"
+}
+
 while true; do
     clear
     echo "========= API Interaction Script ========="
@@ -251,7 +256,8 @@ while true; do
     echo "16. Unban Multilogin"
     echo "17. Restart Services"
     echo "18. Manual Backup"
-    echo "19. Exit"
+    echo "19. Change Secure Stat"
+    echo "20. Exit"
     echo "=========================================="
     read -p "Select an option (1-19): " choice
 
@@ -311,6 +317,9 @@ while true; do
         ott_sam.sh -b
         ;;
     19)
+        change_secure_stat
+        ;;
+    20)
         echo "Exiting..."
         exit 0
         ;;
