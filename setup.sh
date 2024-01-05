@@ -17,6 +17,7 @@ if [ "$(echo "${panel_ips}" | grep -wc "${ipvps}")" != '0' ]; then
     sudo apt upgrade -y
     timedatectl set-timezone Asia/Kuala_Lumpur
     sudo apt install jq -y
+    sudo apt install zip -y
     sudo apt install -y python3-pip
     sudo apt install git -y
     apt install screen -y
